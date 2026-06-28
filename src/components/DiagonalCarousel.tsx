@@ -35,6 +35,8 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
 
+  // Note: onWheel and onResize are defined inside the useEffect below where they have access to local variables.
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -61,12 +63,9 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
     const loadingManager = new THREE.LoadingManager();
     const textureLoader = new THREE.TextureLoader(loadingManager);
 
-    let loadedCount = 0;
+    // Trigger onLoad when all textures are loaded
     loadingManager.onLoad = () => {
       if (onLoad) onLoad();
-    };
-    loadingManager.onProgress = () => {
-      loadedCount++;
     };
 
     // Create mesh helper
@@ -192,7 +191,6 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
       const w = window.innerWidth;
       const h = window.innerHeight;
       renderer.setSize(w, h);
-
       for (const obj of objs) {
         obj.material.uniforms.uContainerResolution.value.set(w, h);
       }
@@ -224,7 +222,7 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
     return () => {
       if (cleanupRef.current) cleanupRef.current();
     };
-  }, []);
+  }, [onLoad]);
 
   return (
     <div
