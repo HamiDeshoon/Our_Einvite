@@ -56,19 +56,26 @@ export default function DiagonalCarousel() {
     );
     const diagonalLimit = Math.sqrt(canvasWidth ** 2 + canvasHeight ** 2) / 800;
     const clock = new THREE.Clock();
+    let lastRender = 0;
 
     const animate = () => {
       animFrameId = requestAnimationFrame(animate);
+      const now = performance.now();
+      if (now - lastRender < 16) {
+        // Throttle to ~60fps
+        return;
+      }
+      lastRender = now;
       const elapsed = clock.getElapsedTime();
-
+  
       currentSpeed = lerp(currentSpeed, targetSpeed, 0.03);
       targetSpeed *= 0.85;
-
+  
       for (const obj of objs) {
         obj.mesh.position.add(infiniteAxis.clone().multiplyScalar(currentSpeed * 0.001));
         obj.material.uniforms.uSpeed.value = currentSpeed * 0.01;
         obj.material.uniforms.uTime.value = elapsed;
-
+  
         const wrapThreshold = diagonalLimit + PLANE_WIDTH * obj.mesh.scale.y;
         if (obj.mesh.position.y > wrapThreshold) {
           obj.mesh.position.y -= 2 * wrapThreshold;
@@ -78,7 +85,7 @@ export default function DiagonalCarousel() {
           obj.mesh.position.x += 2 * wrapThreshold * Math.sin(angleRad);
         }
       }
-
+  
       renderer.render(scene, camera);
     };
 

@@ -10,6 +10,9 @@ import TheWedding from './sections/TheWedding';
 import Gallery from './sections/Gallery';
 import RSVP from './sections/RSVP';
 import Footer from './sections/Footer';
+import VideoUpload from './components/VideoUpload';
+import CountdownTimer from './components/CountdownTimer';
+import LocationSection from './components/LocationSection';
 import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -37,8 +40,11 @@ export default function App() {
       <Navigation />
       <main className="relative" style={{ zIndex: 10 }}>
         <Hero />
+        <VideoUpload />
+        <CountdownTimer targetDate="2026-08-13T18:00:00" />
         <OurStory />
         <TheWedding />
+        <LocationSection />
         <Gallery />
         <RSVP />
         <Footer />

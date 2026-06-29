@@ -27,7 +27,7 @@
 
     --color-cream: #FAF6F1;
     --color-espresso: #2C1810;
-    --color-taupe: #8B7355;
+    --color-taupe: #5A4632;
     --color-gold: #D4A574;
     --color-blush: #E8D5C4;
     --color-warm-bg: #F5EDE4;
@@ -69,6 +69,10 @@
 
   .font-sans {
     font-family: 'Source Sans 3', sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Great Vibes', cursive;
   }
 
   .text-espresso {
