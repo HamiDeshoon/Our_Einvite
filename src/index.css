@@ -33,16 +33,28 @@
     --color-warm-bg: #F5EDE4;
   }
 
+  html,
   body {
-    font-family: 'Source Sans 3', sans-serif;
-    font-weight: 300;
-    color: var(--color-espresso);
+    height: 100%;
     background-color: var(--color-cream);
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans 3', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  body {
+    font-weight: 300;
+    color: var(--color-espresso);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
     letter-spacing: -0.02em;
@@ -92,7 +104,7 @@
   }
 }
 
-/* Gallery overlay for diagonal band */
+/* Overlay for diagonal band */
 #gallery-overlay {
   position: fixed;
   inset: 0;
@@ -102,34 +114,12 @@
   transition: opacity 0.8s ease;
 }
 
-#gallery-overlay::before {
-  content: "";
-  position: absolute;
-  top: -150%;
-  left: -50%;
-  width: 200%;
-  height: 400%;
-  background: linear-gradient(
-    45deg,
-    rgba(250, 246, 241, 0.55) 30%,
-    rgba(250, 246, 241, 0.75) 40%,
-    rgba(250, 246, 241, 0.75) 60%,
-    rgba(250, 246, 241, 0.55) 70%
-  );
-  transform: rotate(45deg);
-  transform-origin: center;
-}
-
-/* WebGL canvas */
+/* Carousel canvas */
 #carousel-canvas {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 0;
 }
-
 #carousel-canvas canvas {
   display: block;
   width: 100%;
@@ -157,7 +147,6 @@
   justify-content: center;
   transition: opacity 0.6s ease;
 }
-
 .loading-screen.hidden {
   opacity: 0;
   pointer-events: none;
@@ -165,19 +154,14 @@
 
 /* Scroll indicator bounce */
 @keyframes gentleBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
 }
-
 .scroll-indicator {
   animation: gentleBounce 2s ease-in-out infinite;
 }
 
-/* Form underline style */
+/* Form underline */
 .underline-input {
   border: none;
   border-bottom: 1px solid var(--color-blush);
@@ -191,17 +175,10 @@
   outline: none;
   transition: border-color 0.3s ease;
 }
+.underline-input:focus { border-bottom-color: var(--color-gold); }
+.underline-input::placeholder { color: var(--color-taupe); opacity: 0.6; }
 
-.underline-input:focus {
-  border-bottom-color: var(--color-gold);
-}
-
-.underline-input::placeholder {
-  color: var(--color-taupe);
-  opacity: 0.6;
-}
-
-/* RSVP pill buttons */
+/* RSVP pills */
 .rsvp-pill {
   border: 1px solid var(--color-blush);
   border-radius: 30px;
@@ -213,7 +190,6 @@
   background: transparent;
   color: var(--color-espresso);
 }
-
 .rsvp-pill.selected {
   background: var(--color-gold);
   border-color: var(--color-gold);
@@ -225,7 +201,6 @@
   position: relative;
   display: inline-block;
 }
-
 .animated-underline::after {
   content: '';
   position: absolute;
@@ -236,7 +211,6 @@
   background: var(--color-espresso);
   transition: width 0.3s ease, left 0.3s ease;
 }
-
 .animated-underline:hover::after {
   width: 100%;
   left: 0;
@@ -247,6 +221,7 @@
   width: 80px;
   height: 1px;
   background: var(--color-gold);
+  margin: 0 auto;
 }
 
 /* Section divider */
@@ -255,4 +230,19 @@
   height: 1px;
   background: var(--color-blush);
   margin: 0 auto;
+}
+
+/* Fade‑in entrance animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
 }

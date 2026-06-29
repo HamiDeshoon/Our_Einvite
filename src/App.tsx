@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DiagonalCarousel from './components/DiagonalCarousel';
 import Navigation from './sections/Navigation';
@@ -10,74 +10,74 @@ import TheWedding from './sections/TheWedding';
 import Gallery from './sections/Gallery';
 import RSVP from './sections/RSVP';
 import Footer from './sections/Footer';
+import './index.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
-  const [loaded, setLoaded] = useState(false);
-  const lenisRef = useRef<Lenis | null>(null);
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  // Callback to hide loading screen when carousel textures are ready
+  const onDiagonalLoad = () => {
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    // Initialize Lenis smooth scroll
+    // Init Lenis
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
-    lenisRef.current = lenis;
+    // @ts-expect-error Lenis instance has no type definitions
+    window.lenis = lenis;
 
     // Connect Lenis to GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
-
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
     gsap.ticker.lagSmoothing(0);
 
+    // Fallback hide after a safety timeout
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500); // 2.5 s max
+  
+    // Callback to hide loading screen when carousel textures are ready
+
+    // Cleanup on unmount
     return () => {
+      clearTimeout(timeout);
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
     };
   }, []);
 
-  useEffect(() => {
-    if (loaded) {
-      // Hide loading screen after a brief delay
-      const timer = setTimeout(() => {
-        const loader = document.querySelector('.loading-screen');
-        if (loader) {
-          loader.classList.add('hidden');
-        }
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [loaded]);
+  // Show loading overlay while isLoading is true
+  if (isLoading) {
+    return (
+      <div className="loading-screen" data-testid="loading-screen">
+        <h1 className="font-serif text-[32px] font-light tracking-[-0.02em] mb-3">
+          Fatemeh & Hamid
+        </h1>
+        <div className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
+          style={{ borderColor: 'var(--color-blush)', borderTopColor: 'transparent' }} />
+      </div>
+    );
+  }
 
+  // Render main content
   return (
     <>
-      {/* Loading Screen */}
-      <div className="loading-screen">
-        <h1
-          className="font-serif text-[32px] font-light tracking-[-0.02em] mb-3"
-          style={{ color: 'var(--color-espresso)' }}
-        >
-          Fatemeh &amp; Hamid
-        </h1>
-        <div
-          className="w-8 h-8 rounded-full border-2 border-t-transparent animate-spin"
-          style={{ borderColor: 'var(--color-blush)', borderTopColor: 'transparent' }}
-        />
-      </div>
+      {/* Persistent background carousel */}
+      <DiagonalCarousel onLoad={onDiagonalLoad} />
 
-      {/* Diagonal WebGL Carousel - persistent background */}
-      <DiagonalCarousel onLoad={() => setLoaded(true)} />
-
-      {/* Diagonal band overlay */}
+      {/* Diagonal overlay */}
       <div id="gallery-overlay" />
 
       {/* Navigation */}
       <Navigation />
 
-      {/* Content Sections */}
+      {/* Sections with fade‑in animation */}
       <main className="relative" style={{ zIndex: 10 }}>
         <Hero />
         <OurStory />
@@ -89,5 +89,3 @@ function App() {
     </>
   );
 }
-
-export default App;
