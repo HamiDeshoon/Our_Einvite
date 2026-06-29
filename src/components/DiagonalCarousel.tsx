@@ -54,6 +54,8 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
     const canvasWidth = window.innerWidth;
     const canvasHeight = window.innerHeight;
     renderer.setSize(canvasWidth, canvasHeight);
+    // Set a non‑transparent clear color to ensure the canvas is visible even if no animation runs
+    renderer.setClearColor(0x111111, 1);
     container.appendChild(renderer.domElement);
  
     // Shared geometry
@@ -149,11 +151,10 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
     // Animation loop
     const clock = new THREE.Clock();
     let animFrameId: number;
+    // Render initial frame (required when animation may be disabled)
+    renderer.render(scene, camera);
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (prefersReduced.matches) {
-    // Skip animation for users who prefer reduced motion
-    return;
-  }
+  const shouldAnimate = !prefersReduced.matches;
  
     const animate = () => {
       animFrameId = requestAnimationFrame(animate);
@@ -199,7 +200,9 @@ export default function DiagonalCarousel({ onLoad }: { onLoad?: () => void }) {
       renderer.render(scene, camera);
     };
  
-    animate();
+    if (shouldAnimate) {
+      animate();
+    }
  
     // Resize handler
     const onResize = () => {
