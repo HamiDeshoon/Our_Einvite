@@ -27,8 +27,8 @@
 
     --color-cream: #FAF6F1;
     --color-espresso: #2C1810;
-    --color-taupe: #5A4632;
-    --color-gold: #D4A574;
+    --color-taupe: #4B3B2F;
+    --color-gold: #B8860B; /* Darker gold for better contrast */
     --color-blush: #E8D5C4;
     --color-warm-bg: #F5EDE4;
   }
@@ -64,7 +64,7 @@
 
 @layer components {
   .font-serif {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
   }
 
   .font-sans {
@@ -75,12 +75,27 @@
     font-family: 'Great Vibes', cursive;
   }
 
+  /* Countdown box styling */
+  .countdown-box {
+    background: var(--color-blush);
+    color: var(--color-espresso);
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    border-radius: var(--radius);
+    min-width: 3rem;
+    text-align: center;
+  }
+  .countdown-label {
+    font-size: 0.75rem;
+    color: var(--color-espresso);
+  }
+
   .text-espresso {
     color: var(--color-espresso);
   }
 
   .text-taupe {
-    color: var(--color-taupe);
+    color: #332E28; /* Darker taupe for improved contrast */
   }
 
   .text-gold {

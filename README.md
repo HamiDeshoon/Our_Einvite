@@ -1,73 +1,47 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a wedding e‑invite built with React, TypeScript, and Vite. It showcases a modern, accessible design with custom typography, improved colour contrast, subtle animations, a responsive video section, a styled location area, and a live countdown timer.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Distinct typography** – `Great Vibes` (display) paired with `Cormorant Garamond` (serif) and `Source Sans 3` (sans‑serif).
+- **Accessible colour palette** – darker taupe (`#5A4632`) for better contrast against the cream background.
+- **Fade‑in animations** – applied to major sections (`Hero`, `VideoUpload`, `LocationSection`, `CountdownTimer`, etc.) for a polished entrance.
+- **Responsive video upload** – users can upload a local video file or provide a YouTube link (plain‑text file). The component automatically renders an `<iframe>` for YouTube URLs.
+- **Styled location section** – includes an animated underline link to Google Maps and uses the `font-display` class for a decorative heading.
+- **Live countdown timer** – announces remaining time with `aria‑live="polite"` for screen‑reader users.
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Start the development server
+npm run dev
 ```
+
+The app will be available at `http://localhost:5173`.
+
+## Build
+
+```bash
+# Create a production build
+npm run build
+```
+
+The output is placed in the `dist/` folder.
+
+## Usage
+
+- **Video section** – click "Upload Video / Provide YouTube Link". Choose a video file or a plain‑text file containing a YouTube URL. The video will display inline; YouTube links are embedded via an `<iframe>`.
+- **Location section** – displays the venue address with a clickable link that opens Google Maps in a new tab.
+- **Countdown timer** – automatically counts down to the ceremony date (`2026‑08‑13T18:00:00`).
+
+## Changelog
+
+- **2026‑06‑29** – Added `font-display` (Great Vibes), updated colour palette (`--color-taupe`), introduced fade‑in animations, enhanced `VideoUpload` for YouTube embeds, refined `LocationSection` styling, added `aria-live` to `CountdownTimer`, and updated README with usage instructions and changelog.
