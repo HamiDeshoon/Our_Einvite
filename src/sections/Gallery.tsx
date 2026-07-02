@@ -77,15 +77,19 @@ export default function Gallery() {
       ref={sectionRef}
       id="gallery"
       className="relative py-[120px] max-md:py-[80px]"
-      style={{ zIndex: 10, background: 'transparent' }}
+      style={{ zIndex: 10 }}
     >
+      {/* Decorative fairy elements */}
+      <div className="absolute top-10 left-1/4 text-3xl twinkle" style={{ color: 'var(--color-magic-gold)', animationDelay: '0.2s' }}>✦</div>
+      <div className="absolute bottom-20 right-1/4 text-2xl twinkle" style={{ color: 'var(--color-fairy-pink-deep)', animationDelay: '0.7s' }}>✧</div>
+
       <div
         ref={contentRef}
         className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center opacity-0 translate-y-[30px]"
       >
         <p
           className="font-serif italic text-[14px] uppercase tracking-[0.08em] mb-4"
-          style={{ color: 'var(--color-gold)' }}
+          style={{ color: 'var(--color-rose-gold)' }}
         >
           A Glimpse of Us
         </p>
@@ -93,8 +97,8 @@ export default function Gallery() {
         <h2
           className="font-serif text-[56px] max-md:text-[40px] font-light tracking-[-0.02em] mb-5"
           style={{
-            color: 'var(--color-espresso)',
-            textShadow: '0 2px 20px rgba(250, 246, 241, 0.8)',
+            color: 'var(--color-twilight)',
+            textShadow: '0 2px 20px rgba(212, 184, 232, 0.5)',
           }}
         >
           Moments &amp; Memories
@@ -104,10 +108,10 @@ export default function Gallery() {
           className="font-sans text-[18px] font-light mb-8"
           style={{
             color: 'var(--color-taupe)',
-            textShadow: '0 1px 10px rgba(250, 246, 241, 0.8)',
+            textShadow: '0 1px 10px rgba(255, 255, 255, 0.5)',
           }}
         >
-          Scroll to wander through our favorite moments together.
+          Scroll to wander through our favorite moments together ✦
         </p>
 
         <div
@@ -119,7 +123,7 @@ export default function Gallery() {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--color-taupe)"
+            stroke="var(--color-rose-gold)"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -129,7 +133,7 @@ export default function Gallery() {
           </svg>
           <span
             className="font-sans text-[14px] font-light"
-            style={{ color: 'var(--color-taupe)' }}
+            style={{ color: 'var(--color-rose-gold)' }}
           >
             Scroll to explore
           </span>
