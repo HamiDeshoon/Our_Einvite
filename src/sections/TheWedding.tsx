@@ -97,23 +97,30 @@ export default function TheWedding() {
       ref={sectionRef}
       id="the-wedding"
       className="relative py-[120px] max-md:py-[80px]"
-      style={{ zIndex: 10, background: 'var(--color-warm-bg)' }}
+      style={{ zIndex: 10 }}
     >
+      {/* Decorative fairy elements */}
+      <div className="absolute top-10 left-1/4 text-3xl twinkle" style={{ color: 'var(--color-magic-gold)', animationDelay: '0.3s' }}>✦</div>
+      <div className="absolute bottom-10 right-1/4 text-2xl twinkle" style={{ color: 'var(--color-fairy-pink-deep)', animationDelay: '0.8s' }}>✧</div>
+
       <div className="section-divider mb-[120px] max-md:mb-[80px]" />
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <p
           ref={labelRef}
           className="font-serif italic text-[14px] uppercase tracking-[0.08em] text-center mb-4 opacity-0 translate-y-4"
-          style={{ color: 'var(--color-gold)' }}
+          style={{ color: 'var(--color-rose-gold)' }}
         >
-          The Wedding
+          The Wedding Celebration
         </p>
 
         <h2
           ref={headlineRef}
           className="font-serif text-[56px] max-md:text-[40px] font-light tracking-[-0.02em] text-center mb-16 opacity-0 translate-y-4"
-          style={{ color: 'var(--color-espresso)' }}
+          style={{ 
+            color: 'var(--color-twilight)',
+            textShadow: '0 2px 10px rgba(212, 184, 232, 0.3)'
+          }}
         >
           Join Us in Celebration
         </h2>
@@ -125,17 +132,17 @@ export default function TheWedding() {
           {DETAIL_CARDS.map((card) => (
             <div
               key={card.title}
-              className="text-center opacity-0 translate-y-[60px]"
+              className="text-center opacity-0 translate-y-[60px] fairy-card glow-effect"
             >
               <div
                 className="inline-flex items-center justify-center mb-5"
-                style={{ color: 'var(--color-gold)' }}
+                style={{ color: 'var(--color-rose-gold)' }}
               >
                 {card.icon}
               </div>
               <h3
                 className="font-serif text-[24px] font-light mb-3"
-                style={{ color: 'var(--color-espresso)' }}
+                style={{ color: 'var(--color-twilight)' }}
               >
                 {card.title}
               </h3>
@@ -154,15 +161,14 @@ export default function TheWedding() {
             ref={btnRef}
             onClick={() => setShowSchedule(!showSchedule)}
             className="animated-underline font-serif text-[16px] uppercase tracking-[0.05em] opacity-0 translate-y-4 bg-transparent border-none cursor-pointer"
-            style={{ color: 'var(--color-espresso)' }}
+            style={{ color: 'var(--color-rose-gold)' }}
           >
             View Full Schedule
           </button>
 
           {showSchedule && (
             <div
-              className="mt-10 max-w-[600px] mx-auto text-left p-8 rounded-lg"
-              style={{ background: 'var(--color-cream)' }}
+              className="mt-10 max-w-[600px] mx-auto text-left p-8 rounded-2xl fairy-card"
             >
               {[
                 { time: '6:00 PM', event: 'Aryan Marriage Ceremony' },
@@ -175,18 +181,18 @@ export default function TheWedding() {
                   key={i}
                   className="flex items-baseline gap-6 py-3"
                   style={{
-                    borderBottom: i < 4 ? '1px solid var(--color-blush)' : 'none',
+                    borderBottom: i < 4 ? '1px solid var(--color-fairy-purple)' : 'none',
                   }}
                 >
                   <span
                     className="font-serif text-[18px] font-light min-w-[100px]"
-                    style={{ color: 'var(--color-gold)' }}
+                    style={{ color: 'var(--color-rose-gold)' }}
                   >
                     {item.time}
                   </span>
                   <span
                     className="font-sans text-[16px] font-light"
-                    style={{ color: 'var(--color-espresso)' }}
+                    style={{ color: 'var(--color-twilight)' }}
                   >
                     {item.event}
                   </span>

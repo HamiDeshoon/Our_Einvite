@@ -4,39 +4,55 @@
 
 @layer base {
   :root {
-    --background: 36 33% 96%;
-    --foreground: 20 35% 12%;
-    --card: 36 33% 96%;
-    --card-foreground: 20 35% 12%;
-    --popover: 36 33% 96%;
-    --popover-foreground: 20 35% 12%;
-    --primary: 20 35% 12%;
-    --primary-foreground: 36 33% 96%;
-    --secondary: 30 25% 50%;
-    --secondary-foreground: 20 35% 12%;
-    --muted: 30 20% 90%;
-    --muted-foreground: 30 25% 50%;
-    --accent: 28 45% 64%;
-    --accent-foreground: 20 35% 12%;
+    /* Fairy Princess Theme - Magical Color Palette */
+    --background: 280 40% 98%;
+    --foreground: 280 20% 15%;
+    --card: 280 40% 98%;
+    --card-foreground: 280 20% 15%;
+    --popover: 280 40% 98%;
+    --popover-foreground: 280 20% 15%;
+    --primary: 280 60% 45%;
+    --primary-foreground: 280 40% 98%;
+    --secondary: 340 70% 85%;
+    --secondary-foreground: 280 20% 15%;
+    --muted: 280 30% 94%;
+    --muted-foreground: 280 15% 50%;
+    --accent: 340 80% 75%;
+    --accent-foreground: 280 20% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 28 45% 64%;
-    --input: 28 45% 64%;
-    --ring: 28 45% 64%;
-    --radius: 0.25rem;
+    --border: 280 40% 85%;
+    --input: 280 40% 85%;
+    --ring: 280 60% 55%;
+    --radius: 0.5rem;
 
-    --color-cream: #FAF6F1;
-    --color-espresso: #2C1810;
-    --color-taupe: #4B3B2F;
-    --color-gold: #B8860B; /* Darker gold for better contrast */
-    --color-blush: #E8D5C4;
-    --color-warm-bg: #F5EDE4;
+    /* Fairy Princess Custom Colors */
+    --color-fairy-purple: #D4B8E8;
+    --color-fairy-purple-dark: #9B7FB8;
+    --color-fairy-pink: #FADADD;
+    --color-fairy-pink-deep: #E8A4B8;
+    --color-rose-gold: #B76E79;
+    --color-magic-gold: #D4AF37;
+    --color-ethereal-blue: #C8D8E8;
+    --color-sparkle-white: #FFF8F0;
+    --color-dream-lavender: #E6E6FA;
+    --color-enchantment: #DDA0DD;
+    --color-moonlight: #F5F3FF;
+    --color-twilight: #6B5B95;
+    
+    --color-cream: #FFF8F5;
+    --color-espresso: #4A3728;
+    --color-taupe: #8B7355;
+    --color-gold: #C9A959;
+    --color-blush: #FFE4E1;
+    --color-warm-bg: #FDF6F0;
   }
 
   html,
   body {
     height: 100%;
-    background-color: var(--color-cream);
+    background: linear-gradient(135deg, var(--color-moonlight) 0%, var(--color-dream-lavender) 50%, var(--color-fairy-pink) 100%);
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     font-family: 'Source Sans 3', sans-serif;
@@ -46,7 +62,7 @@
 
   body {
     font-weight: 300;
-    color: var(--color-espresso);
+    color: var(--color-twilight);
   }
 
   h1,
@@ -56,9 +72,10 @@
   h5,
   h6 {
     font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(212, 184, 232, 0.3);
   }
 }
 
@@ -75,51 +92,158 @@
     font-family: 'Great Vibes', cursive;
   }
 
-  /* Countdown box styling */
+  /* Fairy dust sparkle animation */
+  @keyframes fairySparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes gentleGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(212, 184, 232, 0.4); }
+    50% { box-shadow: 0 0 40px rgba(232, 164, 184, 0.6); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .fairy-sparkle {
+    animation: fairySparkle 3s ease-in-out infinite;
+  }
+
+  .float-animation {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .shimmer-effect {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .glow-effect {
+    animation: gentleGlow 3s ease-in-out infinite;
+  }
+
+  .twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  /* Countdown box styling - Fairy Princess version */
   .countdown-box {
-    background: var(--color-blush);
-    color: var(--color-espresso);
-    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, var(--color-fairy-purple) 0%, var(--color-fairy-pink) 100%);
+    color: var(--color-twilight);
+    padding: 0.75rem 1.25rem;
     margin: 0.25rem;
-    border-radius: var(--radius);
-    min-width: 3rem;
+    border-radius: 16px;
+    min-width: 4rem;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(212, 184, 232, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
   }
   .countdown-label {
-    font-size: 0.75rem;
-    color: var(--color-espresso);
+    font-size: 0.7rem;
+    color: var(--color-twilight);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
-  .text-espresso {
-    color: var(--color-espresso);
+  .text-fairy-purple {
+    color: var(--color-fairy-purple-dark);
   }
 
-  .text-taupe {
-    color: #332E28; /* Darker taupe for improved contrast */
+  .text-fairy-pink {
+    color: var(--color-fairy-pink-deep);
+  }
+
+  .text-rose-gold {
+    color: var(--color-rose-gold);
   }
 
   .text-gold {
-    color: var(--color-gold);
+    color: var(--color-magic-gold);
   }
 
   .text-blush {
-    color: var(--color-blush);
+    color: var(--color-fairy-pink-deep);
   }
 
-  .bg-cream {
-    background-color: var(--color-cream);
+  .bg-fairy-gradient {
+    background: linear-gradient(135deg, var(--color-moonlight) 0%, var(--color-dream-lavender) 50%, var(--color-fairy-pink) 100%);
+  }
+
+  .bg-fairy-card {
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.9) 0%, rgba(230, 230, 250, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
   }
 
   .bg-warm {
-    background-color: var(--color-warm-bg);
+    background: linear-gradient(180deg, rgba(253, 246, 240, 0.8) 0%, rgba(255, 228, 225, 0.6) 100%);
+    backdrop-filter: blur(10px);
+  }
+
+  .border-fairy {
+    border-color: var(--color-fairy-purple);
+  }
+
+  .border-rose-gold {
+    border-color: var(--color-rose-gold);
   }
 
   .border-gold {
-    border-color: var(--color-gold);
+    border-color: var(--color-magic-gold);
   }
 
   .border-blush {
-    border-color: var(--color-blush);
+    border-color: var(--color-fairy-pink);
+  }
+
+  /* Decorative fairy elements */
+  .fairy-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+  }
+  .fairy-divider::before,
+  .fairy-divider::after {
+    content: '✦';
+    color: var(--color-rose-gold);
+    font-size: 1rem;
+  }
+  .fairy-divider-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-rose-gold), transparent);
+  }
+
+  .decorative-line {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-rose-gold), var(--color-magic-gold), transparent);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  .section-divider {
+    width: 250px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-fairy-purple), transparent);
+    margin: 0 auto;
   }
 }
 
@@ -152,41 +276,52 @@
 }
 .scroll-indicator {
   animation: gentleBounce 2s ease-in-out infinite;
+  color: var(--color-rose-gold);
 }
 
-/* Form underline */
+/* Form underline - Fairy Princess version */
 .underline-input {
   border: none;
-  border-bottom: 1px solid var(--color-blush);
-  border-radius: 0;
-  padding: 12px 0;
-  background: transparent;
+  border-bottom: 2px solid var(--color-fairy-purple);
+  border-radius: 8px 8px 0 0;
+  padding: 14px 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,248,240,0.3) 100%);
   font-family: 'Source Sans 3', sans-serif;
   font-size: 16px;
-  color: var(--color-espresso);
+  color: var(--color-twilight);
   width: 100%;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
-.underline-input:focus { border-bottom-color: var(--color-gold); }
+.underline-input:focus {
+  border-bottom-color: var(--color-rose-gold);
+  background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,248,240,0.5) 100%);
+  box-shadow: 0 4px 15px rgba(212, 184, 232, 0.3);
+}
 .underline-input::placeholder { color: var(--color-taupe); opacity: 0.6; }
 
-/* RSVP pills */
+/* RSVP pills - Fairy Princess version */
 .rsvp-pill {
-  border: 1px solid var(--color-blush);
-  border-radius: 30px;
-  padding: 12px 28px;
+  border: 2px solid var(--color-fairy-purple);
+  border-radius: 50px;
+  padding: 14px 32px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: transparent;
-  color: var(--color-espresso);
+  background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,248,240,0.6) 100%);
+  color: var(--color-twilight);
+  box-shadow: 0 2px 10px rgba(212, 184, 232, 0.3);
+}
+.rsvp-pill:hover {
+  box-shadow: 0 4px 20px rgba(212, 184, 232, 0.5);
+  transform: translateY(-2px);
 }
 .rsvp-pill.selected {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
+  background: linear-gradient(135deg, var(--color-rose-gold) 0%, var(--color-fairy-pink-deep) 100%);
+  border-color: var(--color-rose-gold);
   color: white;
+  box-shadow: 0 4px 20px rgba(183, 110, 121, 0.4);
 }
 
 /* Link underline animation */
@@ -200,36 +335,21 @@
   bottom: -2px;
   left: 50%;
   width: 0;
-  height: 1px;
-  background: var(--color-espresso);
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-rose-gold), var(--color-magic-gold));
   transition: width 0.3s ease, left 0.3s ease;
+  border-radius: 2px;
 }
 .animated-underline:hover::after {
   width: 100%;
   left: 0;
 }
 
-/* Decorative line */
-.decorative-line {
-  width: 80px;
-  height: 1px;
-  background: var(--color-gold);
-  margin: 0 auto;
-}
-
-/* Section divider */
-.section-divider {
-  width: 200px;
-  height: 1px;
-  background: var(--color-blush);
-  margin: 0 auto;
-}
-
 /* Fade‑in entrance animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -237,5 +357,54 @@
   }
 }
 .fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Fairy tale card style */
+.fairy-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 240, 0.9) 100%);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(212, 184, 232, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+/* Magical button style */
+.magical-btn {
+  background: linear-gradient(135deg, var(--color-rose-gold) 0%, var(--color-fairy-pink-deep) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(183, 110, 121, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.magical-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+.magical-btn:hover::before {
+  left: 100%;
+}
+.magical-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(183, 110, 121, 0.6);
+}
+.magical-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }

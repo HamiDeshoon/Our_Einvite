@@ -76,19 +76,23 @@ export default function OurStory() {
       ref={sectionRef}
       id="our-story"
       className="relative py-[120px] max-md:py-[80px]"
-      style={{ zIndex: 10, background: 'var(--color-cream)' }}
+      style={{ zIndex: 10 }}
     >
+      {/* Decorative fairy elements */}
+      <div className="absolute top-10 right-20 text-3xl twinkle" style={{ color: 'var(--color-fairy-purple)' }}>✦</div>
+      <div className="absolute bottom-20 left-10 text-2xl twinkle" style={{ animationDelay: '0.7s', color: 'var(--color-rose-gold)' }}>✧</div>
+
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-2 max-lg:grid-cols-1 gap-16 max-lg:gap-12 items-center">
           {/* Image */}
           <div
             ref={imageRef}
-            className="opacity-0 translate-y-10"
+            className="opacity-0 translate-y-10 fairy-card p-2 glow-effect"
           >
             <img
               src="/images/story-portrait.jpg"
               alt="Fatemeh and Hamid"
-              className="w-full h-auto rounded-lg shadow-lg"
+              className="w-full h-auto rounded-2xl shadow-xl"
               style={{ aspectRatio: '3/4', objectFit: 'cover' }}
             />
           </div>
@@ -98,15 +102,18 @@ export default function OurStory() {
             <p
               ref={labelRef}
               className="font-serif italic text-[14px] uppercase tracking-[0.08em] mb-4 opacity-0 translate-y-4"
-              style={{ color: 'var(--color-gold)' }}
+              style={{ color: 'var(--color-rose-gold)' }}
             >
-              Our Story
+              Our Love Story
             </p>
 
             <h2
               ref={headlineRef}
               className="font-serif text-[56px] max-md:text-[40px] font-light tracking-[-0.02em] mb-8 opacity-0 translate-y-4"
-              style={{ color: 'var(--color-espresso)' }}
+              style={{ 
+                color: 'var(--color-twilight)',
+                textShadow: '0 2px 10px rgba(212, 184, 232, 0.3)'
+              }}
             >
               Where It All Began
             </h2>
@@ -143,12 +150,12 @@ export default function OurStory() {
 
             <blockquote
               ref={quoteRef}
-              className="opacity-0 translate-y-4"
+              className="opacity-0 translate-y-4 fairy-card"
             >
               <div className="decorative-line mb-5" />
               <p
                 className="font-serif italic text-[28px] max-md:text-[22px] leading-[1.4]"
-                style={{ color: 'var(--color-gold)' }}
+                style={{ color: 'var(--color-rose-gold)' }}
               >
                 "Every love story is beautiful, but ours is my favorite."
               </p>
