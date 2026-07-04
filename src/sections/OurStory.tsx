@@ -12,6 +12,9 @@ export default function OurStory() {
   const body1Ref = useRef<HTMLParagraphElement>(null);
   const body2Ref = useRef<HTMLParagraphElement>(null);
   const body3Ref = useRef<HTMLParagraphElement>(null);
+  const body4Ref = useRef<HTMLParagraphElement>(null);
+  const body5Ref = useRef<HTMLParagraphElement>(null);
+  const body6Ref = useRef<HTMLParagraphElement>(null);
   const quoteRef = useRef<HTMLQuoteElement>(null);
 
   useEffect(() => {
@@ -56,6 +59,24 @@ export default function OurStory() {
         ease: 'power3.out',
       }, '-=0.4')
       .to(body3Ref.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+      }, '-=0.4')
+      .to(body4Ref.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+      }, '-=0.4')
+      .to(body5Ref.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+      }, '-=0.4')
+      .to(body6Ref.current, {
         opacity: 1,
         y: 0,
         duration: 0.7,
@@ -113,32 +134,50 @@ export default function OurStory() {
 
             <p
               ref={body1Ref}
-              className="font-sans text-[18px] font-light leading-[1.8] mb-6 opacity-0 translate-y-4"
+              className="font-sans text-[18px] font-light leading-[1.8] mb-5 opacity-0 translate-y-4"
               style={{ color: 'var(--color-warm-gray)' }}
             >
-              It began with a glance across a crowded room — two souls recognizing something familiar
-              in each other. Fatemeh's warmth drew Hamid in like gravity, and his quiet strength made
-              her feel at home from the very first conversation.
+              Some stories begin with grand gestures. Ours began with a simple class trip to Darake.
             </p>
 
             <p
               ref={body2Ref}
-              className="font-sans text-[18px] font-light leading-[1.8] mb-6 opacity-0 translate-y-4"
+              className="font-sans text-[18px] font-light leading-[1.8] mb-5 opacity-0 translate-y-4"
               style={{ color: 'var(--color-warm-gray)' }}
             >
-              Through seasons of laughter and growth, they built a bond rooted in respect,
-              adventure, and an unshakeable friendship. From sunrise walks along the Caspian coast
-              to quiet evenings sharing dreams over tea, every moment deepened what they both knew
-              was meant to be.
+              A group of classmates had planned a day together—if we remember correctly, it was Amirhossein's birthday. It seemed like just another ordinary outing, but life has a funny way of hiding extraordinary moments in the most unexpected places.
             </p>
 
             <p
               ref={body3Ref}
-              className="font-sans text-[18px] font-light leading-[1.8] mb-12 opacity-0 translate-y-4"
+              className="font-sans text-[18px] font-light leading-[1.8] mb-5 opacity-0 translate-y-4"
               style={{ color: 'var(--color-warm-gray)' }}
             >
-              Now, they stand ready to begin their greatest adventure — a lifetime of love,
-              partnership, and the beautiful unknown that awaits.
+              That day, our eyes met. In that single glance, the noise around us seemed to disappear, and something quietly changed forever.
+            </p>
+
+            <p
+              ref={body4Ref}
+              className="font-sans text-[18px] font-light leading-[1.8] mb-5 opacity-0 translate-y-4"
+              style={{ color: 'var(--color-warm-gray)' }}
+            >
+              The years that followed weren't always easy. We shared countless laughs, faced our share of challenges, celebrated victories, and learned to grow—both together and as individuals. Every twist and turn became another chapter in the story that brought us here.
+            </p>
+
+            <p
+              ref={body5Ref}
+              className="font-sans text-[18px] font-light leading-[1.8] mb-5 opacity-0 translate-y-4"
+              style={{ color: 'var(--color-warm-gray)' }}
+            >
+              And now, after all the ups and downs, we are beginning our greatest adventure yet.
+            </p>
+
+            <p
+              ref={body6Ref}
+              className="font-sans text-[18px] font-light leading-[1.8] mb-10 opacity-0 translate-y-4"
+              style={{ color: 'var(--color-warm-gray)' }}
+            >
+              We would be honored to have you celebrate this new chapter with us.
             </p>
 
             <blockquote ref={quoteRef} className="opacity-0 translate-y-4">
@@ -147,7 +186,7 @@ export default function OurStory() {
                 className="font-display text-[32px] max-md:text-[26px] leading-[1.4] italic"
                 style={{ color: 'var(--color-rose-gold)' }}
               >
-                "Every love story is beautiful, but ours is my favorite."
+                <strong>Fatemeh & Hamid</strong>
               </p>
             </blockquote>
           </div>

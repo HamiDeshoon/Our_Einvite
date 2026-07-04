@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+<<<<<<< HEAD
     --background: 36 33% 96%;
     --foreground: 20 35% 12%;
     --card: 36 33% 96%;
@@ -33,12 +34,61 @@
     --color-warm-gray: #8D7B74;
     --color-silk: #FDF6F0;
     --color-blush: #F2D2BD;
+=======
+    /* Fairy Princess Theme - Magical Color Palette */
+    --background: 280 40% 98%;
+    --foreground: 280 20% 15%;
+    --card: 280 40% 98%;
+    --card-foreground: 280 20% 15%;
+    --popover: 280 40% 98%;
+    --popover-foreground: 280 20% 15%;
+    --primary: 280 60% 45%;
+    --primary-foreground: 280 40% 98%;
+    --secondary: 340 70% 85%;
+    --secondary-foreground: 280 20% 15%;
+    --muted: 280 30% 94%;
+    --muted-foreground: 280 15% 50%;
+    --accent: 340 80% 75%;
+    --accent-foreground: 280 20% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 280 40% 85%;
+    --input: 280 40% 85%;
+    --ring: 280 60% 55%;
+    --radius: 0.5rem;
+
+    /* Fairy Princess Custom Colors */
+    --color-fairy-purple: #D4B8E8;
+    --color-fairy-purple-dark: #9B7FB8;
+    --color-fairy-pink: #FADADD;
+    --color-fairy-pink-deep: #E8A4B8;
+    --color-rose-gold: #B76E79;
+    --color-magic-gold: #D4AF37;
+    --color-ethereal-blue: #C8D8E8;
+    --color-sparkle-white: #FFF8F0;
+    --color-dream-lavender: #E6E6FA;
+    --color-enchantment: #DDA0DD;
+    --color-moonlight: #F5F3FF;
+    --color-twilight: #6B5B95;
+    
+    --color-cream: #FFF8F5;
+    --color-espresso: #4A3728;
+    --color-taupe: #8B7355;
+    --color-gold: #C9A959;
+    --color-blush: #FFE4E1;
+    --color-warm-bg: #FDF6F0;
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
   }
 
   html,
   body {
     height: 100%;
+<<<<<<< HEAD
     background-color: var(--color-ivory);
+=======
+    background: linear-gradient(135deg, var(--color-moonlight) 0%, var(--color-dream-lavender) 50%, var(--color-fairy-pink) 100%);
+    background-attachment: fixed;
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
     margin: 0;
     padding: 0;
     font-family: 'Lora', Georgia, serif;
@@ -48,9 +98,13 @@
 
   body {
     font-weight: 300;
+<<<<<<< HEAD
     color: var(--color-mahogany);
     background-image: radial-gradient(circle at 10% 20%, rgba(183, 110, 121, 0.03) 0%, transparent 30%),
                       radial-gradient(circle at 90% 80%, rgba(242, 210, 189, 0.04) 0%, transparent 35%);
+=======
+    color: var(--color-twilight);
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
   }
 
   h1,
@@ -59,10 +113,18 @@
   h4,
   h5,
   h6 {
+<<<<<<< HEAD
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.1;
+=======
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    text-shadow: 0 2px 10px rgba(212, 184, 232, 0.3);
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
   }
 }
 
@@ -79,6 +141,7 @@
     font-family: 'Dancing Script', cursive;
   }
 
+<<<<<<< HEAD
   .heading-xl {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(4rem, 8vw, 7rem);
@@ -95,10 +158,89 @@
     line-height: 1.1;
   }
 
+=======
+  /* Fairy dust sparkle animation */
+  @keyframes fairySparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes gentleGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(212, 184, 232, 0.4); }
+    50% { box-shadow: 0 0 40px rgba(232, 164, 184, 0.6); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .fairy-sparkle {
+    animation: fairySparkle 3s ease-in-out infinite;
+  }
+
+  .float-animation {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .shimmer-effect {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  .glow-effect {
+    animation: gentleGlow 3s ease-in-out infinite;
+  }
+
+  .twinkle {
+    animation: twinkle 2s ease-in-out infinite;
+  }
+
+  /* Countdown box styling - Fairy Princess version */
+  .countdown-box {
+    background: linear-gradient(135deg, var(--color-fairy-purple) 0%, var(--color-fairy-pink) 100%);
+    color: var(--color-twilight);
+    padding: 0.75rem 1.25rem;
+    margin: 0.25rem;
+    border-radius: 16px;
+    min-width: 4rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(212, 184, 232, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+  }
+  .countdown-label {
+    font-size: 0.7rem;
+    color: var(--color-twilight);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .text-fairy-purple {
+    color: var(--color-fairy-purple-dark);
+  }
+
+  .text-fairy-pink {
+    color: var(--color-fairy-pink-deep);
+  }
+
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
   .text-rose-gold {
     color: var(--color-rose-gold);
   }
 
+<<<<<<< HEAD
   .text-deep-rose {
     color: var(--color-deep-rose);
   }
@@ -121,10 +263,80 @@
 
   .border-rose-gold {
     border-color: var(--color-rose-gold);
+=======
+  .text-gold {
+    color: var(--color-magic-gold);
+  }
+
+  .text-blush {
+    color: var(--color-fairy-pink-deep);
+  }
+
+  .bg-fairy-gradient {
+    background: linear-gradient(135deg, var(--color-moonlight) 0%, var(--color-dream-lavender) 50%, var(--color-fairy-pink) 100%);
+  }
+
+  .bg-fairy-card {
+    background: linear-gradient(135deg, rgba(255, 248, 240, 0.9) 0%, rgba(230, 230, 250, 0.9) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .bg-warm {
+    background: linear-gradient(180deg, rgba(253, 246, 240, 0.8) 0%, rgba(255, 228, 225, 0.6) 100%);
+    backdrop-filter: blur(10px);
+  }
+
+  .border-fairy {
+    border-color: var(--color-fairy-purple);
+  }
+
+  .border-rose-gold {
+    border-color: var(--color-rose-gold);
+  }
+
+  .border-gold {
+    border-color: var(--color-magic-gold);
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
   }
 
   .border-blush {
-    border-color: var(--color-blush);
+    border-color: var(--color-fairy-pink);
+  }
+
+  /* Decorative fairy elements */
+  .fairy-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+  }
+  .fairy-divider::before,
+  .fairy-divider::after {
+    content: '✦';
+    color: var(--color-rose-gold);
+    font-size: 1rem;
+  }
+  .fairy-divider-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-rose-gold), transparent);
+  }
+
+  .decorative-line {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-rose-gold), var(--color-magic-gold), transparent);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  .section-divider {
+    width: 250px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-fairy-purple), transparent);
+    margin: 0 auto;
   }
 }
 
@@ -157,11 +369,13 @@
 }
 .scroll-indicator {
   animation: gentleBounce 2s ease-in-out infinite;
+  color: var(--color-rose-gold);
 }
 
-/* Form underline */
+/* Form underline - Fairy Princess version */
 .underline-input {
   border: none;
+<<<<<<< HEAD
   border-bottom: 1px solid var(--color-blush);
   border-radius: 0;
   padding: 12px 0;
@@ -169,15 +383,34 @@
   font-family: 'Lora', Georgia, serif;
   font-size: 16px;
   color: var(--color-mahogany);
+=======
+  border-bottom: 2px solid var(--color-fairy-purple);
+  border-radius: 8px 8px 0 0;
+  padding: 14px 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,248,240,0.3) 100%);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  color: var(--color-twilight);
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
   width: 100%;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
+.underline-input:focus {
+  border-bottom-color: var(--color-rose-gold);
+  background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,248,240,0.5) 100%);
+  box-shadow: 0 4px 15px rgba(212, 184, 232, 0.3);
+}
+<<<<<<< HEAD
 .underline-input:focus { border-bottom-color: var(--color-rose-gold); }
 .underline-input::placeholder { color: var(--color-warm-gray); opacity: 0.7; }
+=======
+.underline-input::placeholder { color: var(--color-taupe); opacity: 0.6; }
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
 
-/* RSVP pills */
+/* RSVP pills - Fairy Princess version */
 .rsvp-pill {
+<<<<<<< HEAD
   border: 1px solid var(--color-blush);
   border-radius: 30px;
   padding: 12px 28px;
@@ -192,6 +425,28 @@
   background: var(--color-rose-gold);
   border-color: var(--color-rose-gold);
   color: var(--color-ivory);
+=======
+  border: 2px solid var(--color-fairy-purple);
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,248,240,0.6) 100%);
+  color: var(--color-twilight);
+  box-shadow: 0 2px 10px rgba(212, 184, 232, 0.3);
+}
+.rsvp-pill:hover {
+  box-shadow: 0 4px 20px rgba(212, 184, 232, 0.5);
+  transform: translateY(-2px);
+}
+.rsvp-pill.selected {
+  background: linear-gradient(135deg, var(--color-rose-gold) 0%, var(--color-fairy-pink-deep) 100%);
+  border-color: var(--color-rose-gold);
+  color: white;
+  box-shadow: 0 4px 20px rgba(183, 110, 121, 0.4);
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
 }
 
 /* Link underline animation */
@@ -205,15 +460,23 @@
   bottom: -2px;
   left: 50%;
   width: 0;
+<<<<<<< HEAD
   height: 1px;
   background: var(--color-rose-gold);
   transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+=======
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-rose-gold), var(--color-magic-gold));
+  transition: width 0.3s ease, left 0.3s ease;
+  border-radius: 2px;
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
 }
 .animated-underline:hover::after {
   width: 100%;
   left: 0;
 }
 
+<<<<<<< HEAD
 /* Decorative line */
 .decorative-line {
   width: 80px;
@@ -230,11 +493,13 @@
   margin: 0 auto;
 }
 
+=======
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
 /* Fade‑in entrance animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -242,7 +507,56 @@
   }
 }
 .fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Fairy tale card style */
+.fairy-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 248, 240, 0.9) 100%);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(212, 184, 232, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+/* Magical button style */
+.magical-btn {
+  background: linear-gradient(135deg, var(--color-rose-gold) 0%, var(--color-fairy-pink-deep) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(183, 110, 121, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+.magical-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+.magical-btn:hover::before {
+  left: 100%;
+}
+.magical-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(183, 110, 121, 0.6);
+}
+.magical-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Video overlay for hero */

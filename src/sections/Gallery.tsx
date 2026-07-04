@@ -81,34 +81,67 @@ export default function Gallery() {
     <section
       ref={sectionRef}
       id="gallery"
+<<<<<<< HEAD
       className="relative py-[140px] max-md:py-[100px]"
       style={{ zIndex: 10, background: 'var(--color-ivory)' }}
+=======
+      className="relative py-[120px] max-md:py-[80px]"
+      style={{ zIndex: 10 }}
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
     >
+      {/* Decorative fairy elements */}
+      <div className="absolute top-10 left-1/4 text-3xl twinkle" style={{ color: 'var(--color-magic-gold)', animationDelay: '0.2s' }}>✦</div>
+      <div className="absolute bottom-20 right-1/4 text-2xl twinkle" style={{ color: 'var(--color-fairy-pink-deep)', animationDelay: '0.7s' }}>✧</div>
+
       <div
         ref={headerRef}
         className="max-w-[800px] mx-auto px-6 lg:px-8 text-center mb-16 opacity-0 translate-y-[30px]"
       >
         <p
+<<<<<<< HEAD
           className="font-serif italic text-[14px] uppercase tracking-[0.1em] mb-4 text-deep-rose"
+=======
+          className="font-serif italic text-[14px] uppercase tracking-[0.08em] mb-4"
+          style={{ color: 'var(--color-rose-gold)' }}
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
         >
           A Glimpse of Us
         </p>
 
         <h2
+<<<<<<< HEAD
           className="heading-lg font-light mb-6"
           style={{ color: 'var(--color-mahogany)' }}
+=======
+          className="font-serif text-[56px] max-md:text-[40px] font-light tracking-[-0.02em] mb-5"
+          style={{
+            color: 'var(--color-twilight)',
+            textShadow: '0 2px 20px rgba(212, 184, 232, 0.5)',
+          }}
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
         >
           Moments & Memories
         </h2>
 
         <p
+<<<<<<< HEAD
           className="font-sans text-[18px] font-light max-w-[500px] mx-auto"
           style={{ color: 'var(--color-warm-gray)' }}
         >
           A collection of our favorite moments — the laughter, the journeys, and the love that brought us here.
+=======
+          className="font-sans text-[18px] font-light mb-8"
+          style={{
+            color: 'var(--color-taupe)',
+            textShadow: '0 1px 10px rgba(255, 255, 255, 0.5)',
+          }}
+        >
+          Scroll to wander through our favorite moments together ✦
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
         </p>
       </div>
 
+<<<<<<< HEAD
       <div
         ref={gridRef}
         className="max-w-[1200px] mx-auto px-6 lg:px-8"
@@ -136,6 +169,31 @@ export default function Gallery() {
               </figcaption>
             </figure>
           ))}
+=======
+        <div
+          ref={hintRef}
+          className="inline-flex items-center gap-2"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--color-rose-gold)"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect x="6" y="3" width="12" height="18" rx="6" />
+            <line x1="12" y1="7" x2="12" y2="10" />
+          </svg>
+          <span
+            className="font-sans text-[14px] font-light"
+            style={{ color: 'var(--color-rose-gold)' }}
+          >
+            Scroll to explore
+          </span>
+>>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
         </div>
       </div>
     </section>
