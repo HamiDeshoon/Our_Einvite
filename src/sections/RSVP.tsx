@@ -19,9 +19,10 @@ export default function RSVP() {
         gsap.to(Array.from(elements), {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power3.out',
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 80%',
@@ -38,7 +39,6 @@ export default function RSVP() {
     e.preventDefault();
     setSubmitting(true);
 
-    // Simulate submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setSubmitting(false);
@@ -49,34 +49,33 @@ export default function RSVP() {
     <section
       ref={sectionRef}
       id="rsvp"
-      className="relative py-[160px] max-md:py-[100px]"
-      style={{ zIndex: 10, background: 'var(--color-cream)' }}
+      className="relative py-[180px] max-md:py-[120px]"
+      style={{ zIndex: 10, background: 'var(--color-champagne)' }}
     >
-      <div className="max-w-[560px] mx-auto px-6">
+      <div className="max-w-[600px] mx-auto px-6">
         <p
-          className="form-animate font-serif italic text-[14px] uppercase tracking-[0.08em] text-center mb-4 opacity-0 translate-y-4"
-          style={{ color: 'var(--color-gold)' }}
+          className="form-animate font-serif italic text-[14px] uppercase tracking-[0.1em] text-center mb-4 opacity-0 translate-y-4 text-deep-rose"
         >
           RSVP
         </p>
 
         <h2
-          className="form-animate font-serif text-[56px] max-md:text-[40px] font-light tracking-[-0.02em] text-center mb-3 opacity-0 translate-y-4"
-          style={{ color: 'var(--color-espresso)' }}
+          className="form-animate heading-lg font-light text-center mb-3 opacity-0 translate-y-4"
+          style={{ color: 'var(--color-mahogany)' }}
         >
           Will You Be There?
         </h2>
 
         <p
           className="form-animate font-sans text-[16px] font-light text-center mb-12 opacity-0 translate-y-4"
-          style={{ color: 'var(--color-taupe)' }}
+          style={{ color: 'var(--color-warm-gray)' }}
         >
           Please let us know by July 15th, 2026
         </p>
 
         {!submitted ? (
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8">
-            <div className="form-animate opacity-0 translate-y-4">
+            <div className="form-animate opacity-0 translate-y-4 scale-95">
               <input
                 type="text"
                 placeholder="Full Name"
@@ -85,7 +84,7 @@ export default function RSVP() {
               />
             </div>
 
-            <div className="form-animate opacity-0 translate-y-4">
+            <div className="form-animate opacity-0 translate-y-4 scale-95">
               <input
                 type="email"
                 placeholder="Email Address"
@@ -94,7 +93,7 @@ export default function RSVP() {
               />
             </div>
 
-            <div className="form-animate opacity-0 translate-y-4">
+            <div className="form-animate opacity-0 translate-y-4 scale-95">
               <input
                 type="tel"
                 placeholder="Phone Number"
@@ -103,7 +102,7 @@ export default function RSVP() {
               />
             </div>
 
-            <div className="form-animate opacity-0 translate-y-4">
+            <div className="form-animate opacity-0 translate-y-4 scale-95">
               <select
                 required
                 className="underline-input cursor-pointer"
@@ -118,10 +117,10 @@ export default function RSVP() {
               </select>
             </div>
 
-            <div className="form-animate opacity-0 translate-y-4">
+            <div className="form-animate opacity-0 translate-y-4 scale-95">
               <p
-                className="font-sans text-[14px] font-normal uppercase tracking-[0.05em] mb-4"
-                style={{ color: 'var(--color-taupe)' }}
+                className="font-sans text-[14px] font-medium uppercase tracking-[0.05em] mb-4"
+                style={{ color: 'var(--color-warm-gray)' }}
               >
                 Will you be attending?
               </p>
@@ -143,7 +142,7 @@ export default function RSVP() {
               </div>
             </div>
 
-            <div className="form-animate opacity-0 translate-y-4">
+            <div className="form-animate opacity-0 translate-y-4 scale-95">
               <textarea
                 placeholder="Leave a message for the couple..."
                 rows={3}
@@ -154,19 +153,20 @@ export default function RSVP() {
             <button
               type="submit"
               disabled={submitting || !attending}
-              className="form-animate font-serif text-[16px] uppercase tracking-[0.08em] py-4 rounded transition-all duration-300 opacity-0 translate-y-4 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="form-animate font-serif text-[16px] uppercase tracking-[0.08em] py-4 rounded-full transition-all duration-300 opacity-0 translate-y-4 scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                background: submitting ? 'var(--color-gold)' : 'var(--color-espresso)',
-                color: 'var(--color-cream)',
+                background: submitting ? 'var(--color-rose-gold)' : 'var(--color-mahogany)',
+                color: 'var(--color-ivory)',
+                border: 'none',
               }}
               onMouseEnter={(e) => {
                 if (!submitting) {
-                  (e.target as HTMLElement).style.background = 'var(--color-gold)';
+                  (e.target as HTMLElement).style.background = 'var(--color-deep-rose)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!submitting) {
-                  (e.target as HTMLElement).style.background = 'var(--color-espresso)';
+                  (e.target as HTMLElement).style.background = 'var(--color-mahogany)';
                 }
               }}
             >
@@ -177,11 +177,11 @@ export default function RSVP() {
           <div className="text-center py-12">
             <svg
               className="mx-auto mb-6"
-              width="48"
-              height="48"
+              width="56"
+              height="56"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="var(--color-gold)"
+              stroke="var(--color-rose-gold)"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -190,14 +190,14 @@ export default function RSVP() {
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
             <h3
-              className="font-serif text-[32px] font-light mb-3"
-              style={{ color: 'var(--color-espresso)' }}
+              className="font-serif text-[34px] font-light mb-3"
+              style={{ color: 'var(--color-mahogany)' }}
             >
               Thank You!
             </h3>
             <p
-              className="font-sans text-[16px] font-light"
-              style={{ color: 'var(--color-taupe)' }}
+              className="font-sans text-[16px] font-light max-w-[350px] mx-auto"
+              style={{ color: 'var(--color-warm-gray)' }}
             >
               {attending === 'accept'
                 ? 'We are so excited to celebrate with you!'

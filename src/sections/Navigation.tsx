@@ -13,7 +13,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight * 0.5);
+      setScrolled(window.scrollY > window.innerHeight * 0.3);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -30,13 +30,14 @@ export default function Navigation() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        height: '64px',
-        background: 'rgba(250, 246, 241, 0.92)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: scrolled ? '1px solid rgba(212, 165, 116, 0.3)' : '1px solid transparent',
+        height: scrolled ? '56px' : '64px',
+        background: scrolled ? 'rgba(254, 253, 251, 0.95)' : 'rgba(254, 253, 251, 0.85)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        borderBottom: scrolled ? '1px solid rgba(183, 110, 121, 0.2)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 4px 20px rgba(62, 39, 35, 0.08)' : 'none',
       }}
     >
       <div className="max-w-[1200px] mx-auto h-full flex items-center justify-between px-6 lg:px-8">
@@ -46,25 +47,25 @@ export default function Navigation() {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="font-serif text-[20px] font-light tracking-tight"
-          style={{ color: 'var(--color-espresso)' }}
+          className="font-display text-[24px] font-normal tracking-tight"
+          style={{ color: 'var(--color-mahogany)' }}
         >
-          Fatemeh &amp; Hamid
+          Fatemeh & Hamid
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className="font-sans text-[13px] font-normal uppercase tracking-[0.08em] transition-colors duration-300 hover:text-espresso"
-              style={{ color: 'var(--color-taupe)' }}
+              className="font-sans text-[13px] font-normal uppercase tracking-[0.08em] transition-colors duration-300 relative"
+              style={{ color: 'var(--color-warm-gray)' }}
               onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.color = 'var(--color-espresso)';
+                (e.target as HTMLElement).style.color = 'var(--color-mahogany)';
               }}
               onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.color = 'var(--color-taupe)';
+                (e.target as HTMLElement).style.color = 'var(--color-warm-gray)';
               }}
             >
               {link.label}

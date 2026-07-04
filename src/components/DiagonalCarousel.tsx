@@ -3,19 +3,31 @@ import * as THREE from 'three';
 import { vertexShader, fragmentShader } from '../shaders/carouselShaders';
 
 const IMAGE_PATHS = [
-  '/images/hero-1.jpg',
-  '/images/hero-2.jpg',
-  '/images/hero-3.jpg',
-  '/images/hero-4.jpg',
-  '/images/hero-5.jpg',
-  '/images/hero-6.jpg',
-  '/images/hero-7.jpg',
-  '/images/hero-8.jpg',
+  '/images/Mirror_duo.jpg',
+  '/images/Elevator_duo.jpg',
+  '/images/Gang_pose_duo.jpg',
+  '/images/Selfie_hamid_view.jpg',
+  '/images/Selfie_fatemeh_view.jpg',
+  '/images/proposal_us.jpg',
+  '/images/Intivation_pose.jpg',
+  '/images/North_trip.jpg',
+  '/images/First_trip.jpg',
+  '/images/Kebab_trio.jpg',
+  '/images/Wedding_flowers.jpg',
+  '/images/Wedding_ring.jpg',
+  '/images/Fatemeh_childhood.jpg',
+  '/images/Hamid_defending_thesis.jpg',
+  '/images/Graduation.jpg',
+  '/images/Graduation_party.jpg',
+  '/images/our_childhood.jpg',
 ];
 
-const PLANE_WIDTH = 0.3;
-const DIAGONAL_ANGLE = 45;
-const SPACING = 0.45;
+const VIDEO_PATH = '/sub.mp4';
+
+const PLANE_WIDTH = 0.35;
+const DIAGONAL_ANGLE = 35;
+const SPACING = 0.5;
+const WAVE_AMPLITUDE = 0.15;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -23,6 +35,7 @@ function lerp(a: number, b: number, t: number): number {
 
 export default function DiagonalCarousel() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -36,65 +49,28 @@ export default function DiagonalCarousel() {
     const camera = new THREE.OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -1000, 1000);
     camera.position.z = 1;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(canvasWidth, canvasHeight);
-    renderer.setClearColor(0x111111, 1);
+    renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    const geometry = new THREE.PlaneGeometry(1, 1, 16, 16);
-    const objs: { mesh: THREE.Mesh; material: THREE.ShaderMaterial }[] = [];
+    const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+    const objs: { mesh: THREE.Mesh; material: THREE.ShaderMaterial; type?: string }[] = [];
 
     let currentSpeed = 0;
     let targetSpeed = 0;
     let scrollTargetSpeed = 0;
     let animFrameId: number;
+    let timeOffset = 0;
 
     const infiniteAxis = new THREE.Vector3(0, 1, 0).applyAxisAngle(
       new THREE.Vector3(0, 0, 1),
       THREE.MathUtils.degToRad(DIAGONAL_ANGLE)
     );
-    const diagonalLimit = Math.sqrt(canvasWidth ** 2 + canvasHeight ** 2) / 800;
+    const diagonalLimit = Math.sqrt(canvasWidth ** 2 + canvasHeight ** 2) / 600;
     const clock = new THREE.Clock();
     let lastRender = 0;
-
-    const animate = () => {
-      animFrameId = requestAnimationFrame(animate);
-      const now = performance.now();
-      if (now - lastRender < 16) {
-        // Throttle to ~60fps
-        return;
-      }
-      lastRender = now;
-      const elapsed = clock.getElapsedTime();
-  
-      currentSpeed = lerp(currentSpeed, targetSpeed, 0.03);
-      targetSpeed *= 0.85;
-  
-      for (const obj of objs) {
-        obj.mesh.position.add(infiniteAxis.clone().multiplyScalar(currentSpeed * 0.001));
-        obj.material.uniforms.uSpeed.value = currentSpeed * 0.01;
-        obj.material.uniforms.uTime.value = elapsed;
-  
-        const wrapThreshold = diagonalLimit + PLANE_WIDTH * obj.mesh.scale.y;
-        if (obj.mesh.position.y > wrapThreshold) {
-          obj.mesh.position.y -= 2 * wrapThreshold;
-          obj.mesh.position.x -= 2 * wrapThreshold * Math.sin(angleRad);
-        } else if (obj.mesh.position.y < -wrapThreshold) {
-          obj.mesh.position.y += 2 * wrapThreshold;
-          obj.mesh.position.x += 2 * wrapThreshold * Math.sin(angleRad);
-        }
-      }
-  
-      renderer.render(scene, camera);
-    };
-
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      scrollTargetSpeed += e.deltaY * 0.4;
-      targetSpeed = scrollTargetSpeed;
-      scrollTargetSpeed *= 0.85;
-    };
 
     const onResize = () => {
       const w = window.innerWidth;
@@ -105,11 +81,46 @@ export default function DiagonalCarousel() {
       }
     };
 
+    const animate = () => {
+      animFrameId = requestAnimationFrame(animate);
+      const now = performance.now();
+      if (now - lastRender < 16) return;
+      lastRender = now;
+
+      currentSpeed = lerp(currentSpeed, targetSpeed, 0.025);
+      targetSpeed *= 0.85;
+      timeOffset += 0.005;
+
+      for (const obj of objs) {
+        const speedFactor = currentSpeed * 0.001;
+        obj.mesh.position.add(infiniteAxis.clone().multiplyScalar(speedFactor));
+        obj.material.uniforms.uSpeed.value = Math.abs(currentSpeed) * 0.015;
+        obj.material.uniforms.uTime.value = timeOffset;
+
+        const wrapThreshold = diagonalLimit + PLANE_WIDTH * obj.mesh.scale.y;
+        if (obj.mesh.position.y > wrapThreshold) {
+          obj.mesh.position.y -= 2 * wrapThreshold;
+          obj.mesh.position.x -= 2 * wrapThreshold * Math.sin(angleRad);
+        } else if (obj.mesh.position.y < -wrapThreshold) {
+          obj.mesh.position.y += 2 * wrapThreshold;
+          obj.mesh.position.x += 2 * wrapThreshold * Math.sin(angleRad);
+        }
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      scrollTargetSpeed += e.deltaY * 0.3;
+      targetSpeed = scrollTargetSpeed;
+      scrollTargetSpeed *= 0.85;
+    };
+
     window.addEventListener('wheel', onWheel, { passive: false });
     window.addEventListener('resize', onResize);
 
     const manager = new THREE.LoadingManager();
-    const loader = new THREE.TextureLoader(manager);
 
     manager.onLoad = () => {
       for (const obj of objs) {
@@ -120,7 +131,54 @@ export default function DiagonalCarousel() {
       }
     };
 
+    // Load video texture
+    const video = document.createElement('video');
+    video.src = VIDEO_PATH;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.crossOrigin = 'anonymous';
+    video.preload = 'auto';
+    videoRef.current = video;
+
+    video.addEventListener('loadedmetadata', () => {
+      video.play().catch(() => {});
+      const videoTexture = new THREE.VideoTexture(video);
+      videoTexture.minFilter = THREE.LinearFilter;
+      videoTexture.magFilter = THREE.LinearFilter;
+      videoTexture.format = THREE.RGBAFormat;
+
+      const material = new THREE.ShaderMaterial({
+        side: THREE.DoubleSide,
+        uniforms: {
+          uTexture: { value: videoTexture },
+          uResolution: { value: new THREE.Vector2(video.videoWidth, video.videoHeight) },
+          uContainerResolution: { value: new THREE.Vector2(canvasWidth, canvasHeight) },
+          uUvScale: { value: new THREE.Vector2(1, 1) },
+          uSpeed: { value: 0 },
+          uTime: { value: 0 },
+          uOverlayColor: { value: new THREE.Color(0.1, 0.05, 0.03) },
+        },
+        vertexShader,
+        fragmentShader,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      const scaleY = PLANE_WIDTH * (video.videoWidth / video.videoHeight);
+      mesh.scale.set(PLANE_WIDTH, scaleY, 1);
+      mesh.rotation.z = angleRad;
+
+      const totalLength = (IMAGE_PATHS.length + 1) * SPACING;
+      const startOffset = -totalLength / 2;
+      const yPos = startOffset - SPACING;
+      mesh.position.set(Math.sin(angleRad) * yPos, Math.cos(angleRad) * yPos, 0);
+
+      objs.push({ mesh, material, type: 'video' });
+    });
+
+    // Load image textures
     IMAGE_PATHS.forEach((path, index) => {
+      const loader = new THREE.TextureLoader(manager);
       loader.load(path, (texture) => {
         const image = texture.image as HTMLImageElement;
         if (!image || !image.naturalWidth) return;
@@ -137,7 +195,7 @@ export default function DiagonalCarousel() {
             uUvScale: { value: new THREE.Vector2(1, 1) },
             uSpeed: { value: 0 },
             uTime: { value: 0 },
-            uOverlayColor: { value: new THREE.Color(0.2, 0.1, 0) },
+            uOverlayColor: { value: new THREE.Color(0.1, 0.05, 0.03) },
           },
           vertexShader,
           fragmentShader,
@@ -147,12 +205,12 @@ export default function DiagonalCarousel() {
         mesh.scale.set(PLANE_WIDTH, scaleY, 1);
         mesh.rotation.z = angleRad;
 
-        const totalLength = IMAGE_PATHS.length * SPACING;
+        const totalLength = (IMAGE_PATHS.length + 1) * SPACING;
         const startOffset = -totalLength / 2;
         const yPos = startOffset + index * SPACING;
         mesh.position.set(Math.sin(angleRad) * yPos, Math.cos(angleRad) * yPos, 0);
 
-        objs.push({ mesh, material });
+        objs.push({ mesh, material, type: 'image' });
       });
     });
 
@@ -165,6 +223,10 @@ export default function DiagonalCarousel() {
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+      if (videoRef.current) {
+        videoRef.current.pause();
+        videoRef.current.remove();
+      }
     };
   }, []);
 
@@ -176,7 +238,7 @@ export default function DiagonalCarousel() {
       style={{
         position: 'fixed',
         inset: 0,
-        zIndex: 0,
+        zIndex: 1,
         pointerEvents: 'none',
       }}
     />

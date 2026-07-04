@@ -10,43 +10,47 @@
     --card-foreground: 20 35% 12%;
     --popover: 36 33% 96%;
     --popover-foreground: 20 35% 12%;
-    --primary: 20 35% 12%;
-    --primary-foreground: 36 33% 96%;
+    --primary: 33 60% 45%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 30 25% 50%;
     --secondary-foreground: 20 35% 12%;
     --muted: 30 20% 90%;
     --muted-foreground: 30 25% 50%;
-    --accent: 28 45% 64%;
+    --accent: 350 60% 65%;
     --accent-foreground: 20 35% 12%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 28 45% 64%;
-    --input: 28 45% 64%;
-    --ring: 28 45% 64%;
-    --radius: 0.25rem;
+    --border: 33 60% 70%;
+    --input: 33 60% 70%;
+    --ring: 33 60% 65%;
+    --radius: 0.5rem;
 
-    --color-cream: #FAF6F1;
-    --color-espresso: #2C1810;
-    --color-taupe: #4B3B2F;
-    --color-gold: #B8860B; /* Darker gold for better contrast */
-    --color-blush: #E8D5C4;
-    --color-warm-bg: #F5EDE4;
+    --color-champagne: #F8F4E9;
+    --color-ivory: #FEFDFB;
+    --color-rose-gold: #B76E79;
+    --color-deep-rose: #9D4A55;
+    --color-mahogany: #3E2723;
+    --color-warm-gray: #8D7B74;
+    --color-silk: #FDF6F0;
+    --color-blush: #F2D2BD;
   }
 
   html,
   body {
     height: 100%;
-    background-color: var(--color-cream);
+    background-color: var(--color-ivory);
     margin: 0;
     padding: 0;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Lora', Georgia, serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     font-weight: 300;
-    color: var(--color-espresso);
+    color: var(--color-mahogany);
+    background-image: radial-gradient(circle at 10% 20%, rgba(183, 110, 121, 0.03) 0%, transparent 30%),
+                      radial-gradient(circle at 90% 80%, rgba(242, 210, 189, 0.04) 0%, transparent 35%);
   }
 
   h1,
@@ -55,67 +59,68 @@
   h4,
   h5,
   h6 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300;
-    letter-spacing: -0.02em;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
     line-height: 1.1;
   }
 }
 
 @layer components {
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
   .font-sans {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'Lora', Georgia, serif;
   }
 
   .font-display {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Dancing Script', cursive;
   }
 
-  /* Countdown box styling */
-  .countdown-box {
-    background: var(--color-blush);
-    color: var(--color-espresso);
-    padding: 0.5rem 1rem;
-    margin: 0.25rem;
-    border-radius: var(--radius);
-    min-width: 3rem;
-    text-align: center;
-  }
-  .countdown-label {
-    font-size: 0.75rem;
-    color: var(--color-espresso);
+  .heading-xl {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
   }
 
-  .text-espresso {
-    color: var(--color-espresso);
+  .heading-lg {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 
-  .text-taupe {
-    color: #332E28; /* Darker taupe for improved contrast */
+  .text-rose-gold {
+    color: var(--color-rose-gold);
   }
 
-  .text-gold {
-    color: var(--color-gold);
+  .text-deep-rose {
+    color: var(--color-deep-rose);
   }
 
-  .text-blush {
-    color: var(--color-blush);
+  .text-warm-gray {
+    color: var(--color-warm-gray);
   }
 
-  .bg-cream {
-    background-color: var(--color-cream);
+  .bg-silk {
+    background-color: var(--color-silk);
   }
 
-  .bg-warm {
-    background-color: var(--color-warm-bg);
+  .bg-ivory {
+    background-color: var(--color-ivory);
   }
 
-  .border-gold {
-    border-color: var(--color-gold);
+  .bg-champagne {
+    background-color: var(--color-champagne);
+  }
+
+  .border-rose-gold {
+    border-color: var(--color-rose-gold);
   }
 
   .border-blush {
@@ -161,32 +166,32 @@
   border-radius: 0;
   padding: 12px 0;
   background: transparent;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 16px;
-  color: var(--color-espresso);
+  color: var(--color-mahogany);
   width: 100%;
   outline: none;
   transition: border-color 0.3s ease;
 }
-.underline-input:focus { border-bottom-color: var(--color-gold); }
-.underline-input::placeholder { color: var(--color-taupe); opacity: 0.6; }
+.underline-input:focus { border-bottom-color: var(--color-rose-gold); }
+.underline-input::placeholder { color: var(--color-warm-gray); opacity: 0.7; }
 
 /* RSVP pills */
 .rsvp-pill {
   border: 1px solid var(--color-blush);
   border-radius: 30px;
   padding: 12px 28px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   background: transparent;
-  color: var(--color-espresso);
+  color: var(--color-mahogany);
 }
 .rsvp-pill.selected {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
-  color: white;
+  background: var(--color-rose-gold);
+  border-color: var(--color-rose-gold);
+  color: var(--color-ivory);
 }
 
 /* Link underline animation */
@@ -201,8 +206,8 @@
   left: 50%;
   width: 0;
   height: 1px;
-  background: var(--color-espresso);
-  transition: width 0.3s ease, left 0.3s ease;
+  background: var(--color-rose-gold);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .animated-underline:hover::after {
   width: 100%;
@@ -213,7 +218,7 @@
 .decorative-line {
   width: 80px;
   height: 1px;
-  background: var(--color-gold);
+  background: var(--color-rose-gold);
   margin: 0 auto;
 }
 
@@ -238,4 +243,74 @@
 }
 .fade-in {
   animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Video overlay for hero */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(254, 253, 251, 0.7) 0%, rgba(254, 253, 251, 0.9) 100%);
+  z-index: 1;
+}
+
+/* Countdown box styling */
+.countdown-box {
+  background: rgba(242, 210, 189, 0.4);
+  backdrop-filter: blur(10px);
+  color: var(--color-mahogany);
+  padding: 0.75rem 1.25rem;
+  margin: 0.25rem;
+  border-radius: 12px;
+  min-width: 4.5rem;
+  text-align: center;
+  border: 1px solid rgba(183, 110, 121, 0.2);
+}
+.countdown-label {
+  font-size: 0.75rem;
+  color: var(--color-warm-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+  font-family: 'Lora', Georgia, serif;
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: rgba(254, 253, 251, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(183, 110, 121, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(62, 39, 35, 0.08);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Elegant scale in */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-scale-in {
+  animation: scaleIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Text shimmer effect */
+.text-shimmer {
+  background: linear-gradient(120deg, var(--color-rose-gold), var(--color-deep-rose));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+@keyframes shimmer {
+  to { background-position: 200% center; }
 }

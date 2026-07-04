@@ -9,21 +9,19 @@ void main() {
   vec3 pos = position;
   vec3 worldPosition = (modelMatrix * vec4(position, 1.0)).xyz;
 
-  // 1. Vertical oscillation based on world X position and time
-  float yDisplacement = 0.05 * sin(0.5 * worldPosition.x + uTime);
-  pos.y += yDisplacement;
-  pos.y -= 0.05;
+  // Wave distortion based on time
+  float waveX = sin(worldPosition.y * 2.0 + uTime * 2.0) * 0.08;
+  float waveY = sin(worldPosition.x * 2.0 + uTime * 1.5) * 0.08;
+  pos.x += waveX * (1.0 + abs(uSpeed) * 0.5);
+  pos.y += waveY * (1.0 + abs(uSpeed) * 0.5);
 
-  // 2. Horizontal oscillation using a slower time offset
-  float xDisplacement = 0.05 * sin(0.5 * worldPosition.y + uTime + PI / 2.0);
-  pos.x += xDisplacement;
-  pos.x -= 0.05;
+  // Subtle rotation based on speed
+  float rotation = uSpeed * 0.002;
+  pos.x = pos.x * cos(rotation) - pos.y * sin(rotation);
+  pos.y = pos.x * sin(rotation) + pos.y * cos(rotation);
 
-  // 3. Velocity-based stretch in Y
-  float bendFactor = 0.3 * uSpeed;
-  float yBend = bendFactor * cos(worldPosition.x * 2.0);
-  pos.y += yBend;
-  pos.y -= bendFactor;
+  // Vertical float effect
+  pos.z += sin(uTime * 0.5 + worldPosition.x) * 0.02;
 
   vUv = uv;
   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
@@ -46,6 +44,16 @@ void main() {
     vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
     vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
   );
-  gl_FragColor = texture2D(uTexture, uv * uUvScale);
+  vec4 color = texture2D(uTexture, uv * uUvScale);
+  
+  // Film-like desaturation on darker areas
+  float luminance = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+  vec3 desaturated = mix(color.rgb, vec3(luminance), 0.3);
+  color.rgb = desaturated;
+  
+  // Subtle warm tone overlay
+  color.rgb = mix(color.rgb, color.rgb * vec3(1.0, 0.95, 0.9), 0.15);
+  
+  gl_FragColor = color;
 }
 `;

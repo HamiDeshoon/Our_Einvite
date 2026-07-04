@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-/**
- * Countdown timer component.
- * targetDate: ISO date string for the ceremony start.
- */
 export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   const [timeLeft, setTimeLeft] = useState<number>(0);
   const containerRef = useRef<HTMLElement | null>(null);
+  const boxesRef = useRef<HTMLDivElement>(null);
   useScrollAnimation(containerRef);
 
   useEffect(() => {
@@ -22,9 +20,6 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  // Removed unused format function after adopting graphical countdown layout.
-
-  // Compute individual time units
   const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
   const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
@@ -33,27 +28,26 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   return (
     <section
       ref={containerRef}
-      className="my-8 text-center fade-in"
-      style={{ color: 'var(--color-espresso)' }}
+      className="my-12 text-center fade-in"
+      style={{ color: 'var(--color-mahogany)' }}
     >
       <h2 className="font-display text-2xl md:text-3xl mb-2">Countdown to the ceremony</h2>
-      <div className="flex justify-center gap-2 mt-4">
-        <div className="countdown-box">
-          <div className="font-display text-2xl">{days}</div>
-          <div className="countdown-label">Days</div>
-        </div>
-        <div className="countdown-box">
-          <div className="font-display text-2xl">{hours}</div>
-          <div className="countdown-label">Hours</div>
-        </div>
-        <div className="countdown-box">
-          <div className="font-display text-2xl">{minutes}</div>
-          <div className="countdown-label">Min</div>
-        </div>
-        <div className="countdown-box">
-          <div className="font-display text-2xl">{seconds}</div>
-          <div className="countdown-label">Sec</div>
-        </div>
+      <div ref={boxesRef} className="flex justify-center gap-3 mt-6">
+        {[
+          { value: days, label: 'Days' },
+          { value: hours, label: 'Hours' },
+          { value: minutes, label: 'Min' },
+          { value: seconds, label: 'Sec' },
+        ].map((item, i) => (
+          <div
+            key={item.label}
+            className="countdown-box opacity-0 scale-90"
+            style={{ animationDelay: `${i * 0.1}s` }}
+          >
+            <div className="font-display text-2xl">{item.value}</div>
+            <div className="countdown-label">{item.label}</div>
+          </div>
+        ))}
       </div>
     </section>
   );
