@@ -27,7 +27,6 @@ const VIDEO_PATH = '/sub.mp4';
 const PLANE_WIDTH = 0.35;
 const DIAGONAL_ANGLE = 35;
 const SPACING = 0.5;
-const WAVE_AMPLITUDE = 0.15;
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -69,7 +68,6 @@ export default function DiagonalCarousel() {
       THREE.MathUtils.degToRad(DIAGONAL_ANGLE)
     );
     const diagonalLimit = Math.sqrt(canvasWidth ** 2 + canvasHeight ** 2) / 600;
-    const clock = new THREE.Clock();
     let lastRender = 0;
 
     const onResize = () => {

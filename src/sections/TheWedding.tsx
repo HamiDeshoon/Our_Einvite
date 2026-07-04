@@ -97,30 +97,15 @@ export default function TheWedding() {
     <section
       ref={sectionRef}
       id="the-wedding"
-<<<<<<< HEAD
       className="relative py-[140px] max-md:py-[100px]"
       style={{ zIndex: 10, background: 'var(--color-champagne)' }}
     >
       <div className="section-divider mb-[100px] max-md:mb-[60px]" />
-=======
-      className="relative py-[120px] max-md:py-[80px]"
-      style={{ zIndex: 10 }}
-    >
-      {/* Decorative fairy elements */}
-      <div className="absolute top-10 left-1/4 text-3xl twinkle" style={{ color: 'var(--color-magic-gold)', animationDelay: '0.3s' }}>✦</div>
-      <div className="absolute bottom-10 right-1/4 text-2xl twinkle" style={{ color: 'var(--color-fairy-pink-deep)', animationDelay: '0.8s' }}>✧</div>
-
-      <div className="section-divider mb-[120px] max-md:mb-[80px]" />
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
 
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <p
           ref={labelRef}
-<<<<<<< HEAD
           className="font-serif italic text-[14px] uppercase tracking-[0.1em] text-center mb-4 opacity-0 translate-y-4"
-=======
-          className="font-serif italic text-[14px] uppercase tracking-[0.08em] text-center mb-4 opacity-0 translate-y-4"
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
           style={{ color: 'var(--color-rose-gold)' }}
         >
           The Wedding Celebration
@@ -128,16 +113,8 @@ export default function TheWedding() {
 
         <h2
           ref={headlineRef}
-<<<<<<< HEAD
           className="heading-lg font-light text-center mb-16 opacity-0 translate-y-4"
           style={{ color: 'var(--color-mahogany)' }}
-=======
-          className="font-serif text-[56px] max-md:text-[40px] font-light tracking-[-0.02em] text-center mb-16 opacity-0 translate-y-4"
-          style={{ 
-            color: 'var(--color-twilight)',
-            textShadow: '0 2px 10px rgba(212, 184, 232, 0.3)'
-          }}
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
         >
           Join Us in Celebration
         </h2>
@@ -149,14 +126,13 @@ export default function TheWedding() {
           {DETAIL_CARDS.map((card, i) => (
             <div
               key={card.title}
-<<<<<<< HEAD
               className="text-center opacity-0 translate-y-[60px] scale-95"
               style={{ transitionDelay: `${i * 50}ms` }}
             >
               <div className="glass-card p-8 h-full">
                 <div
                   className="inline-flex items-center justify-center mb-6 w-16 h-16 rounded-full"
-                  style={{ 
+                  style={{
                     color: 'var(--color-rose-gold)',
                     background: 'rgba(183, 110, 121, 0.1)'
                   }}
@@ -176,28 +152,6 @@ export default function TheWedding() {
                   {card.detail}
                 </p>
               </div>
-=======
-              className="text-center opacity-0 translate-y-[60px] fairy-card glow-effect"
-            >
-              <div
-                className="inline-flex items-center justify-center mb-5"
-                style={{ color: 'var(--color-rose-gold)' }}
-              >
-                {card.icon}
-              </div>
-              <h3
-                className="font-serif text-[24px] font-light mb-3"
-                style={{ color: 'var(--color-twilight)' }}
-              >
-                {card.title}
-              </h3>
-              <p
-                className="font-sans text-[16px] font-light leading-[1.6]"
-                style={{ color: 'var(--color-taupe)' }}
-              >
-                {card.detail}
-              </p>
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
             </div>
           ))}
         </div>
@@ -206,24 +160,15 @@ export default function TheWedding() {
           <button
             ref={btnRef}
             onClick={() => setShowSchedule(!showSchedule)}
-<<<<<<< HEAD
             className="animated-underline font-serif text-[16px] uppercase tracking-[0.08em] opacity-0 translate-y-4 bg-transparent border-none cursor-pointer"
             style={{ color: 'var(--color-mahogany)' }}
-=======
-            className="animated-underline font-serif text-[16px] uppercase tracking-[0.05em] opacity-0 translate-y-4 bg-transparent border-none cursor-pointer"
-            style={{ color: 'var(--color-rose-gold)' }}
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
           >
             View Full Schedule
           </button>
 
           {showSchedule && (
             <div
-<<<<<<< HEAD
               className="mt-10 max-w-[600px] mx-auto text-left p-10 rounded-2xl glass-card"
-=======
-              className="mt-10 max-w-[600px] mx-auto text-left p-8 rounded-2xl fairy-card"
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
             >
               {[
                 { time: '6:00 PM', event: 'Aryan Marriage Ceremony' },
@@ -236,30 +181,18 @@ export default function TheWedding() {
                   key={i}
                   className="flex items-baseline gap-6 py-4"
                   style={{
-<<<<<<< HEAD
                     borderBottom: i < 4 ? '1px solid rgba(183, 110, 121, 0.15)' : 'none',
                   }}
                 >
                   <span
                     className="font-serif text-[18px] font-medium min-w-[110px]"
-=======
-                    borderBottom: i < 4 ? '1px solid var(--color-fairy-purple)' : 'none',
-                  }}
-                >
-                  <span
-                    className="font-serif text-[18px] font-light min-w-[100px]"
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
                     style={{ color: 'var(--color-rose-gold)' }}
                   >
                     {item.time}
                   </span>
                   <span
                     className="font-sans text-[16px] font-light"
-<<<<<<< HEAD
                     style={{ color: 'var(--color-mahogany)' }}
-=======
-                    style={{ color: 'var(--color-twilight)' }}
->>>>>>> fa50cdf0c42cd55bde6d10b109f6c7a4bfe57399
                   >
                     {item.event}
                   </span>

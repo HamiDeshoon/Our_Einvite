@@ -27,6 +27,8 @@ export default function VideoUpload() {
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="/poster.jpg"
             className="w-full h-full object-cover"
           >
             Your browser does not support the video element.

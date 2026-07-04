@@ -45,7 +45,7 @@ export default function LocationSection() {
 
         <div className="text-center mt-8">
           <a
-            href="https://www.google.com/maps/search/?api=1&query=Shahdokht+Wedding+Hall+Tehran"
+            href="https://www.google.com/maps/search/?api=1&query=35.658602%2C51.209630"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block animated-underline text-rose-gold font-serif text-[16px] uppercase tracking-[0.08em]"

@@ -1,6 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   const [timeLeft, setTimeLeft] = useState<number>(0);
@@ -25,6 +28,31 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
   const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
+  useEffect(() => {
+    if (!boxesRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const boxes = boxesRef.current?.querySelectorAll('.countdown-box');
+      if (boxes) {
+        gsap.to(Array.from(boxes), {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: boxesRef.current,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+    }, boxesRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -38,11 +66,11 @@ export default function CountdownTimer({ targetDate }: { targetDate: string }) {
           { value: hours, label: 'Hours' },
           { value: minutes, label: 'Min' },
           { value: seconds, label: 'Sec' },
-        ].map((item, i) => (
+        ].map((item) => (
           <div
             key={item.label}
-            className="countdown-box opacity-0 scale-90"
-            style={{ animationDelay: `${i * 0.1}s` }}
+            className="countdown-box"
+            style={{ opacity: 0, transform: 'scale(0.85) translateY(12px)' }}
           >
             <div className="font-display text-2xl">{item.value}</div>
             <div className="countdown-label">{item.label}</div>
