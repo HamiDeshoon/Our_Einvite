@@ -5,12 +5,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const RSVP_ENDPOINT = import.meta.env.VITE_GOOGLE_SHEET_URL || '';
+
 export default function RSVP() {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [attending, setAttending] = useState<'accept' | 'decline' | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,12 +40,45 @@ export default function RSVP() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setError('');
     setSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const form = formRef.current;
+      if (!form) return;
 
-    setSubmitting(false);
-    setSubmitted(true);
+      const body = {
+        name: (form.elements.namedItem('name') as HTMLInputElement).value,
+        email: (form.elements.namedItem('email') as HTMLInputElement).value,
+        phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+        guests: (form.elements.namedItem('guests') as HTMLSelectElement).value,
+        attending: attending || '',
+        message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+        // Honeypot — bots fill this, the script ignores submissions that do.
+        website: (form.elements.namedItem('website') as HTMLInputElement).value,
+      };
+
+      if (!RSVP_ENDPOINT) {
+        // No endpoint configured — behave as if successful (dev mode).
+        await new Promise((resolve) => setTimeout(resolve, 800));
+        setSubmitted(true);
+        return;
+      }
+
+      const res = await fetch(RSVP_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) throw new Error(`Server responded with ${res.status}`);
+
+      setSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try again or reach out to us directly.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -77,6 +113,7 @@ export default function RSVP() {
           <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8">
             <div className="form-animate opacity-0 translate-y-4 scale-95">
               <input
+                name="name"
                 type="text"
                 placeholder="Full Name"
                 required
@@ -86,6 +123,7 @@ export default function RSVP() {
 
             <div className="form-animate opacity-0 translate-y-4 scale-95">
               <input
+                name="email"
                 type="email"
                 placeholder="Email Address"
                 required
@@ -95,6 +133,7 @@ export default function RSVP() {
 
             <div className="form-animate opacity-0 translate-y-4 scale-95">
               <input
+                name="phone"
                 type="tel"
                 placeholder="Phone Number"
                 required
@@ -104,6 +143,7 @@ export default function RSVP() {
 
             <div className="form-animate opacity-0 translate-y-4 scale-95">
               <select
+                name="guests"
                 required
                 className="underline-input cursor-pointer"
                 defaultValue=""
@@ -144,11 +184,26 @@ export default function RSVP() {
 
             <div className="form-animate opacity-0 translate-y-4 scale-95">
               <textarea
+                name="message"
                 placeholder="Leave a message for the couple..."
                 rows={3}
                 className="underline-input resize-none"
               />
             </div>
+
+            {/* Honeypot — hidden from humans, visible to bots */}
+            <div className="absolute left-[-9999px]" aria-hidden="true">
+              <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+            </div>
+
+            {error && (
+              <p
+                className="form-animate font-sans text-[14px] text-center -mt-4"
+                style={{ color: 'var(--color-deep-rose)' }}
+              >
+                {error}
+              </p>
+            )}
 
             <button
               type="submit"
