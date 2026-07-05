@@ -3,7 +3,17 @@
  * Replace SHEET_ID with your Google Sheet ID.
  */
 
-const SHEET_ID = 'YOUR_SHEET_ID_HERE'; // <-- replace
+const SHEET_ID = '1wvGA6M_Zt1kR5IU1d80_yxyhRpPNa6al1pTlT44tUJ4'; // <-- replace with your sheet ID
+
+/**
+ * Handle GET requests (useful for checking the endpoint in a browser).
+ * Returns a simple text message.
+ */
+function doGet(e) {
+  return ContentService
+    .createTextOutput('RSVP endpoint is alive. Use POST to submit data.')
+    .setMimeType(ContentService.MimeType.TEXT);
+}
 
 /**
  * Entry point for HTTP POST from the RSVP form.
@@ -33,11 +43,11 @@ function doPost(e) {
     sheet.appendRow(row);
 
     // Optional: send email notification
-    // MailApp.sendEmail({
-    //   to: Session.getActiveUser().getEmail(),
-    //   subject: 'New RSVP',
-    //   body: `New RSVP received:\nName: ${data.name}\nEmail: ${data.email}\nAttending: ${data.attending}\nMessage: ${data.message}`
-    // });
+    MailApp.sendEmail({
+       to: Session.getActiveUser().getEmail(),
+       subject: 'New RSVP',
+       body: `New RSVP received:\nName: ${data.name}\nEmail: ${data.email}\nAttending: ${data.attending}\nMessage: ${data.message}`
+     });
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
