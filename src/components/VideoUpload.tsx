@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { asset } from '../lib/assets';
 
 export default function VideoUpload() {
   const containerRef = useRef<HTMLElement | null>(null);
@@ -21,14 +22,14 @@ export default function VideoUpload() {
         </p>
         <div className="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden shadow-xl">
           <video
-            src="/main.mp4"
+            src={asset('/main.mp4')}
             controls
             autoPlay
             loop
             muted
             playsInline
             preload="metadata"
-            poster="/poster.jpg"
+            poster={asset('/poster.jpg')}
             className="w-full h-full object-cover"
           >
             Your browser does not support the video element.

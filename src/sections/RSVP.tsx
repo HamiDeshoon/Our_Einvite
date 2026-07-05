@@ -67,7 +67,11 @@ export default function RSVP() {
 
       const res = await fetch(RSVP_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        // Intentionally NOT application/json: that triggers a CORS preflight
+        // (OPTIONS) which Google Apps Script does not handle, causing the
+        // browser to block the request. text/plain is a CORS "simple request"
+        // — no preflight. The Apps Script still does JSON.parse() on the body.
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(body),
       });
 

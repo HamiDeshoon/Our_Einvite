@@ -1,28 +1,29 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { vertexShader, fragmentShader } from '../shaders/carouselShaders';
+import { asset } from '../lib/assets';
 
 const IMAGE_PATHS = [
-  '/images/Mirror_duo.jpg',
-  '/images/Elevator_duo.jpg',
-  '/images/Gang_pose_duo.jpg',
-  '/images/Selfie_hamid_view.jpg',
-  '/images/Selfie_fatemeh_view.jpg',
-  '/images/proposal_us.jpg',
-  '/images/Intivation_pose.jpg',
-  '/images/North_trip.jpg',
-  '/images/First_trip.jpg',
-  '/images/Kebab_trio.jpg',
-  '/images/Wedding_flowers.jpg',
-  '/images/Wedding_ring.jpg',
-  '/images/Fatemeh_childhood.jpg',
-  '/images/Hamid_defending_thesis.jpg',
-  '/images/Graduation.jpg',
-  '/images/Graduation_party.jpg',
-  '/images/our_childhood.jpg',
+  asset('/images/Mirror_duo.jpg'),
+  asset('/images/Elevator_duo.jpg'),
+  asset('/images/Gang_pose_duo.jpg'),
+  asset('/images/Selfie_hamid_view.jpg'),
+  asset('/images/Selfie_fatemeh_view.jpg'),
+  asset('/images/proposal_us.jpg'),
+  asset('/images/Intivation_pose.jpg'),
+  asset('/images/North_trip.jpg'),
+  asset('/images/First_trip.jpg'),
+  asset('/images/Kebab_trio.jpg'),
+  asset('/images/Wedding_flowers.jpg'),
+  asset('/images/Wedding_ring.jpg'),
+  asset('/images/Fatemeh_childhood.jpg'),
+  asset('/images/Hamid_defending_thesis.jpg'),
+  asset('/images/Graduation.jpg'),
+  asset('/images/Graduation_party.jpg'),
+  asset('/images/our_childhood.jpg'),
 ];
 
-const VIDEO_PATH = '/sub.mp4';
+const VIDEO_PATH = asset('/sub.mp4');
 
 const PLANE_WIDTH = 0.35;
 const DIAGONAL_ANGLE = 35;

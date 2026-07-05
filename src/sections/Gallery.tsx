@@ -1,27 +1,28 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { asset } from '../lib/assets';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const GALLERY_IMAGES = [
-  { src: '/images/Mirror_duo.jpg', caption: 'Reflections of us' },
-  { src: '/images/Elevator_duo.jpg', caption: 'Going up together' },
-  { src: '/images/Gang_pose_duo.jpg', caption: 'Gang Gang!' },
-  { src: '/images/Selfie_fatemeh_view.jpg', caption: 'Through her eyes' },
-  { src: '/images/Selfie_hamid_view.jpg', caption: 'Through his eyes' },
-  { src: '/images/proposal_us.jpg', caption: 'The proposal' },
-  { src: '/images/Intivation_pose.jpg', caption: 'Just the two of us' },
-  { src: '/images/North_trip.jpg', caption: 'Northern adventures' },
-  { src: '/images/First_trip.jpg', caption: 'Our very first trip' },
-  { src: '/images/Kebab_trio.jpg', caption: 'Good food, great company' },
-  { src: '/images/Wedding_flowers.jpg', caption: 'Awaiting the big day' },
-  { src: '/images/Wedding_ring.jpg', caption: 'A promise forever' },
-  { src: '/images/our_childhood.jpg', caption: 'Two kids, two stories, one future' },
-  { src: '/images/Graduation.jpg', caption: 'Caps off to us' },
-  { src: '/images/Graduation_party.jpg', caption: 'We did it together' },
-  { src: '/images/Fatemeh_childhood.jpg', caption: 'Fatemeh, through the years' },
-  { src: '/images/Hamid_defending_thesis.jpg', caption: 'Hamid, a proud moment' },
+  { src: asset('/images/Mirror_duo.jpg'), caption: 'Reflections of us' },
+  { src: asset('/images/Elevator_duo.jpg'), caption: 'Going up together' },
+  { src: asset('/images/Gang_pose_duo.jpg'), caption: 'Gang Gang!' },
+  { src: asset('/images/Selfie_fatemeh_view.jpg'), caption: 'Through her eyes' },
+  { src: asset('/images/Selfie_hamid_view.jpg'), caption: 'Through his eyes' },
+  { src: asset('/images/proposal_us.jpg'), caption: 'The proposal' },
+  { src: asset('/images/Intivation_pose.jpg'), caption: 'Just the two of us' },
+  { src: asset('/images/North_trip.jpg'), caption: 'Northern adventures' },
+  { src: asset('/images/First_trip.jpg'), caption: 'Our very first trip' },
+  { src: asset('/images/Kebab_trio.jpg'), caption: 'Good food, great company' },
+  { src: asset('/images/Wedding_flowers.jpg'), caption: 'Awaiting the big day' },
+  { src: asset('/images/Wedding_ring.jpg'), caption: 'A promise forever' },
+  { src: asset('/images/our_childhood.jpg'), caption: 'Two kids, two stories, one future' },
+  { src: asset('/images/Graduation.jpg'), caption: 'Caps off to us' },
+  { src: asset('/images/Graduation_party.jpg'), caption: 'We did it together' },
+  { src: asset('/images/Fatemeh_childhood.jpg'), caption: 'Fatemeh, through the years' },
+  { src: asset('/images/Hamid_defending_thesis.jpg'), caption: 'Hamid, a proud moment' },
 ];
 
 export default function Gallery() {
